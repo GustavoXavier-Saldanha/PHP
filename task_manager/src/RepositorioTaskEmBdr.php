@@ -28,7 +28,7 @@ class RepositorioTaskEmBdr implements RepositorioTask // MODEL
         }
     }
 
-    public function cadastrar(Task $task)
+    public function cadastrar(Task &$task)
     {
         try {
             $sql = <<<'SQL'
@@ -79,7 +79,7 @@ class RepositorioTaskEmBdr implements RepositorioTask // MODEL
                 'id' => $id
             ]);
         } catch (PDOException $e) {
-            throw new PDOException('Erro: ' . $e);
+            throw new PDOException('Erro: ' . $e->getMessage());
         }
     }
 }
