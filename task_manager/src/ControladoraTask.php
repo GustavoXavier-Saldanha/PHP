@@ -27,26 +27,44 @@ class ControladoraTask
         }
     }
 
-    function cadastrar(Task &$task)
+    function cadastrar()
     {
         try {
+            $dados = $_POST;
+            $task = new Task(
+                0,
+                isset($dados['titulo']) ? $dados['titulo'] : '',
+                isset($dados['descricao']) ? $dados['descricao'] : '',
+                isset($dados['status']) ? $dados['status'] : '',
+                new DateTime(),
+                new DateTime(),
+            );
             $this->repositorio->cadastrar($task);
         } catch (Exception $e) {
             throw new Exception('');
         }
     }
-    function atualizar(Task $task)
+    function atualizar()
     {
         try {
+            $dados = $_POST;
+            $task = new Task(
+                0,
+                isset($dados['titulo']) ? $dados['titulo'] : '',
+                isset($dados['descricao']) ? $dados['descricao'] : '',
+                isset($dados['status']) ? $dados['status'] : '',
+                new DateTime(),
+                new DateTime(),
+            );
             $this->repositorio->atualizar($task);
         } catch (Exception $e) {
             throw new Exception('');
         }
     }
-    function excluir($id)
+    function excluir()
     {
         try {
-            $this->repositorio->excluir($id);
+            $this->repositorio->excluir($_POST['id']);
         } catch (Exception $e) {
             throw new Exception("");
         }

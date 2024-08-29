@@ -1,12 +1,8 @@
 <?php
 require_once("src/conexao.php");
-
-use acme\Fornecedor;
-
-require_once("src/Fornecedor.php");
 require_once("src/controladoraEmBDR.php");
 
-$controladora = new ControladoraTask(conectar());
+$controladora = new ControladoraTask();
 
 $metodo = $_SERVER['REQUEST_METHOD'];
 $url = mb_strtolower($_SERVER['REQUEST_URI']);
@@ -22,17 +18,8 @@ switch ($metodo) {
 
     case 'POST':
         if ($url === '/task') {
-            $dados = $_POST;
-            $task = new Task(
-                0,
-                isset($dados['titulo']) ? $dados['titulo'] : '',
-                isset($dados['descricao']) ? $dados['descricao'] : '',
-                isset($dados['status']) ? $dados['status'] : '',
-                new DateTime(),
-                new DateTime(),
-            );
-
-            $controladora->cadastrar($task);
+    
+            $controladora->cadastrar();
             http_response_code(201);
             echo 'Cadastrado';
         }
@@ -40,17 +27,7 @@ switch ($metodo) {
 
     case 'PUT':
         if ($url === '/task') {
-            $dados = $_POST;
-            $task = new Task(
-                0,
-                isset($dados['titulo']) ? $dados['titulo'] : '',
-                isset($dados['descricao']) ? $dados['descricao'] : '',
-                isset($dados['status']) ? $dados['status'] : '',
-                new DateTime(),
-                new DateTime(),
-            );
-
-            $controladora->atualizar($task);
+            $controladora->atualizar();
             http_response_code(201);
             echo 'Atualizado';
         }
@@ -58,7 +35,7 @@ switch ($metodo) {
 
     case 'DELETE':
         if ($url === '/task') {
-            $controladora->excluir($_POST['id']);
+            $controladora->excluir();
         }
         break;
 
