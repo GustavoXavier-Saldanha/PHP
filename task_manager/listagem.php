@@ -1,6 +1,15 @@
 <?php
 
 function listagemTask(){
+
+    $data = ;
+    $comp =<<<'HTML'
+        <tr>
+            <td></td>
+
+    HTML;
+
+    return $comp;
 }
 
 ?>

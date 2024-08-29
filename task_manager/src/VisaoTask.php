@@ -4,7 +4,9 @@ require_once 'RepositorioTask.php';
 
 class VisaoTask implements RepositorioTask {
 
-    function buscarTodos(){}
+    function buscarTodos(){
+        
+    }
 
     function cadastrar(Task $task){}
 
